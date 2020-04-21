@@ -9,7 +9,7 @@ data "aws_iam_policy_document" "saml_trust" {
     effect  = "Allow"
     actions = ["sts:AssumeRole"]
 
-    principals {
+    principals {
       type        = "Federated"
       identifiers = [aws_iam_saml_provider.provider.arn]
     }
@@ -35,8 +35,8 @@ data "aws_iam_policy_document" "permissions" {
         for_each = statement.value.resources
 
         content {
-          type       = principals.key
-          identifies = principals.value 
+          type        = principals.key
+          identifiers = principals.value 
         }
       } 
     }
@@ -58,7 +58,7 @@ resource "aws_iam_role" "saml_admin" {
   force_detach_policies = true
   path                  = "/saml"
   description           = "Role to grant PowerUser access to users from SAML Provider ${module.label.id}"
-  assume_role_policy    = data.assume_role_policy.saml_trust.json
+  assume_role_policy    = data.aws_iam_policy_document.saml_trust.json
 }
 
 resource "aws_iam_role_policy_attachment" "power_access" {

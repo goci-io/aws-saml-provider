@@ -14,6 +14,6 @@ module "label" {
 }
 
 resource "aws_iam_saml_provider" "provider" {
-  name                   = module.saml_label.id
-  saml_metadata_document = "${file("metadata.xml")}"
+  name                   = module.label.id
+  saml_metadata_document = file("${var.config_path}/metadata.xml")
 }
