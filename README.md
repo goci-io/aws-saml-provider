@@ -7,4 +7,28 @@ Additionally an IAM role is created which grants `PowerUser` permissions and per
 When desired you can also create an alias record pointing to your SAML login URL for convenience.
 
 ### Usage
-TBD
+
+```hcl
+
+module "saml_provider" {
+  source              = "git::https://github.com/goci-io/aws-saml-provider.git?ref=tags/<latest_version>"
+  namespace           = var.namespace
+  stage               = "root"
+  saml_provider_name  = "<provider-name>"
+}
+```
+
+You can also configure an alias record on Route53 to point to your Login SAML URL for convenience as these URLs usually contain long ids or hashes. Add the following arguments to your module configuration:
+
+```hcl
+module "saml_provider" {
+  ... # Auth0 example
+  saml_provider_name  = "auth0"
+  create_alias_record = true
+  hosted_zone_name    = "my-company.io"
+  alias_record_fqdn   = "aws.my-company.io"
+  saml_login_url      = "https://my-company.auth0.com/samlp/<saml_login_url>"
+}
+```
+
+Now you can use `aws.my-company.io` to get to the SSO page.
