@@ -4,7 +4,7 @@ module "records" {
   hosted_zone   = var.hosted_zone_name
   alias_records = [
     {
-      name       = replace(var.alias_record_fqdn, var.hosted_zone_name, "")
+      name       = replace(var.alias_record_fqdn, ".${var.hosted_zone_name}", "")
       alias      = join("", aws_s3_bucket.redirect.*.website_domain)
       alias_zone = join("", aws_s3_bucket.redirect.*.hosted_zone_id)
     }
