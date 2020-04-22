@@ -36,3 +36,27 @@ variable "permissions" {
   default     = []
   description = "Additional policy documents to attach to the SAML admin role"
 }
+
+variable "create_alias_record" {
+  type        = bool
+  default     = false
+  description = "Creates an Alias record on Route53 and a Redirect bucket to create an alias for the SAML login url"
+}
+
+variable "saml_login_url" {
+  type        = string
+  default     = ""
+  description = "Full URL to the SAML login page"
+}
+
+variable "alias_record_fqdn" {
+  type        = string
+  default     = ""
+  description = "Full domain name to use for the alias record (eg: aws.my-company.com)"
+}
+
+variable "hosted_zone_name" {
+  type        = string
+  default     = ""
+  description = "The Name of the hosted zone to create the alias record in"
+}
