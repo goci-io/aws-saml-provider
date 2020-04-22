@@ -46,7 +46,7 @@ data "aws_iam_policy_document" "permissions" {
 resource "aws_iam_policy" "permissions" {
   count       = length(var.permissions) > 0 ? 1 : 0
   name        = module.iam_label.id
-  path        = "/saml"
+  path        = "/saml/${var.saml_provider_name}"
   policy      = data.aws_iam_policy_document.permissions.json
   description = "Grants additional permissions for SAML admin role"
 }
