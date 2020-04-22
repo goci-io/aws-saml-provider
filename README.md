@@ -12,8 +12,8 @@ When desired you can also create an alias record pointing to your SAML login URL
 
 module "saml_provider" {
   source              = "git::https://github.com/goci-io/aws-saml-provider.git?ref=tags/<latest_version>"
-  namespace           = var.namespace
-  stage               = "root"
+  namespace           = "my-company"
+  stage               = "staging"
   saml_provider_name  = "<provider-name>"
 }
 ```
