@@ -46,7 +46,7 @@ data "aws_iam_policy_document" "permissions" {
 resource "aws_iam_policy" "permissions" {
   count       = length(var.permissions) > 0 ? 1 : 0
   name        = module.iam_label.id
-  path        = "/saml/${var.saml_provider_name}"
+  path        = "/saml/${var.saml_provider_name}/"
   policy      = data.aws_iam_policy_document.permissions.json
   description = "Grants additional permissions for SAML admin role"
 }
@@ -56,7 +56,7 @@ resource "aws_iam_role" "saml_admin" {
   tags                  = module.iam_label.tags
   max_session_duration  = 3600
   force_detach_policies = true
-  path                  = "/saml/${var.saml_provider_name}"
+  path                  = "/saml/${var.saml_provider_name}/"
   description           = "Role to grant PowerUser access to users from SAML Provider ${module.label.id}"
   assume_role_policy    = data.aws_iam_policy_document.saml_trust.json
 }
