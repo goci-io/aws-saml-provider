@@ -4,6 +4,10 @@ terraform {
 
 provider "aws" {
   version = "~> 2.50"
+
+  assume_role {
+    role_arn = var.aws_assume_role_arn
+  }
 }
 
 module "label" {
