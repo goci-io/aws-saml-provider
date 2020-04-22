@@ -56,7 +56,7 @@ resource "aws_iam_role" "saml_admin" {
   tags                  = module.iam_label.tags
   max_session_duration  = 3600
   force_detach_policies = true
-  path                  = "/saml"
+  path                  = "/saml/${var.saml_provider_name}"
   description           = "Role to grant PowerUser access to users from SAML Provider ${module.label.id}"
   assume_role_policy    = data.aws_iam_policy_document.saml_trust.json
 }
