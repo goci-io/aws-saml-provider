@@ -10,6 +10,12 @@ variable "stage" {
   description = "Stage the resources will be created for"
 }
 
+variable "name" {
+  type        = string
+  default     = "saml"
+  description = "Name for the module as suffix"
+}
+
 variable "saml_provider_name" {
   type        = string
   description = "Name of the SAML provider to use (eg: okta, auth0, ..)"
