@@ -7,7 +7,7 @@ module "iam_label" {
 data "aws_iam_policy_document" "saml_trust" {
   statement {
     effect  = "Allow"
-    actions = ["sts:AssumeRole"]
+    actions = ["sts:AssumeRoleWithSAML"]
 
     principals {
       type        = "Federated"
