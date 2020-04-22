@@ -12,8 +12,8 @@ variable "stage" {
 
 variable "name" {
   type        = string
-  default     = "saml"
-  description = "Name for the module as suffix"
+  default     = ""
+  description = "Name for the module as suffix for all resources"
 }
 
 variable "saml_provider_name" {
