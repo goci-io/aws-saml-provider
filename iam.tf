@@ -36,9 +36,9 @@ data "aws_iam_policy_document" "permissions" {
 
         content {
           type        = principals.key
-          identifiers = principals.value 
+          identifiers = principals.value
         }
-      } 
+      }
     }
   }
 }

@@ -1,7 +1,7 @@
 module "records" {
-  source        = "git::https://github.com/goci-io/aws-route53-records.git?ref=tags/0.3.0"
-  enabled       = var.create_alias_record
-  hosted_zone   = var.hosted_zone_name
+  source      = "git::https://github.com/goci-io/aws-route53-records.git?ref=tags/0.3.0"
+  enabled     = var.create_alias_record
+  hosted_zone = var.hosted_zone_name
   alias_records = [
     {
       name       = replace(var.alias_record_fqdn, ".${var.hosted_zone_name}", "")

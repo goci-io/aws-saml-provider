@@ -28,7 +28,7 @@ variable "config_path" {
 }
 
 variable "permissions" {
-  type        = list(object({
+  type = list(object({
     actions    = list(string)
     resources  = list(string)
     principals = map(string)
