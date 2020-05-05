@@ -1,12 +1,8 @@
 terraform {
   required_version = ">= 0.12.1"
-}
 
-provider "aws" {
-  version = "~> 2.50"
-
-  assume_role {
-    role_arn = var.aws_assume_role_arn
+  required_providers {
+    aws = "~> 2.50"
   }
 }
 
