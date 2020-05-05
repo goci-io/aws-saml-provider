@@ -12,7 +12,7 @@ provider "aws" {
 
 locals {
   metadata_path   = "${var.config_path}/metadata.xml"
-  exists_metadata = !var.fail_on_missing_config && fileexists(local.metadata_path)
+  exists_metadata = ! var.fail_on_missing_config && fileexists(local.metadata_path)
 }
 
 module "label" {
