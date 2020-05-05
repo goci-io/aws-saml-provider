@@ -66,9 +66,3 @@ variable "hosted_zone_name" {
   default     = ""
   description = "The Name of the hosted zone to create the alias record in"
 }
-
-variable "aws_assume_role_arn" {
-  type        = string
-  default     = ""
-  description = "Role assume for the AWS provider to create resources"
-}
