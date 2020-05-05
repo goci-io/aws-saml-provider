@@ -11,7 +11,7 @@ data "aws_iam_policy_document" "saml_trust" {
 
     principals {
       type        = "Federated"
-      identifiers = [aws_iam_saml_provider.provider.arn]
+      identifiers = aws_iam_saml_provider.provider.*.arn
     }
 
     condition {
@@ -44,7 +44,7 @@ data "aws_iam_policy_document" "permissions" {
 }
 
 resource "aws_iam_policy" "permissions" {
-  count       = length(var.permissions) > 0 ? 1 : 0
+  count       = local.exists_metadata && length(var.permissions) > 0 ? 1 : 0
   name        = module.iam_label.id
   path        = "/saml/${var.saml_provider_name}/"
   policy      = data.aws_iam_policy_document.permissions.json
@@ -52,6 +52,7 @@ resource "aws_iam_policy" "permissions" {
 }
 
 resource "aws_iam_role" "saml_admin" {
+  count                 = local.exists_metadata ? 1 : 0
   name                  = module.iam_label.id
   tags                  = module.iam_label.tags
   max_session_duration  = 3600
@@ -62,12 +63,13 @@ resource "aws_iam_role" "saml_admin" {
 }
 
 resource "aws_iam_role_policy_attachment" "power_access" {
-  role       = aws_iam_role.saml_admin.name
+  count      = local.exists_metadata ? 1 : 0
+  role       = join("", aws_iam_role.saml_admin.*.name)
   policy_arn = "arn:aws:iam::aws:policy/PowerUserAccess"
 }
 
 resource "aws_iam_role_policy_attachment" "permissions" {
-  count      = length(var.permissions) > 0 ? 1 : 0
-  role       = aws_iam_role.saml_admin.name
+  count      = local.exists_metadata && length(var.permissions) > 0 ? 1 : 0
+  role       = join("", aws_iam_role.saml_admin.*.name)
   policy_arn = element(aws_iam_policy.permissions.*.arn, count.index)
 }
