@@ -27,6 +27,12 @@ variable "config_path" {
   description = "Path to a directory containing metadata.xml for the SAML provider configuration"
 }
 
+variable "fail_on_missing_config" {
+  type        = bool
+  default     = true
+  description = "Fails when metadata.xml cannot be found. Creates no resources otherwise"
+}
+
 variable "permissions" {
   type = list(object({
     actions    = list(string)
