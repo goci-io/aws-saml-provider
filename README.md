@@ -4,8 +4,7 @@
 
 ![terraform](https://github.com/goci-io/aws-saml-provider/workflows/terraform/badge.svg?branch=master)
 
-This module creates an AWS SAML Provider by using the provided `metadata.xml`. You can also change the path to the provider config.
-Additionally an IAM role is created which grants `PowerUser` permissions and permissions defined in `permissions`.
+This module creates an AWS SAML Provider by using the provided `metadata.xml`. You can also change the path to the provider config or set `saml_provider_metadata` to the full metadata content. Additionally an IAM role is created which grants `PowerUser` permissions and permissions defined in `permissions`.
 When desired you can also create an alias record pointing to your SAML login URL for convenience.
 
 ### Usage
