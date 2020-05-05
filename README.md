@@ -34,3 +34,7 @@ module "saml_provider" {
 ```
 
 Now you can use `aws.my-company.io` to get to the SSO page.
+
+#### Enabled
+
+In case you only want to enable the module creating resources in case of an existing `metadata.xml` you can set `fail_on_missing_config` to `false`.  No resources will be created when no metadata is present.
