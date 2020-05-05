@@ -33,6 +33,12 @@ variable "fail_on_missing_config" {
   description = "Fails when metadata.xml cannot be found. Creates no resources otherwise"
 }
 
+variable "saml_provider_metadata" {
+  type        = string
+  default     = ""
+  description = "Plain SAML provider metadata manifest"
+}
+
 variable "permissions" {
   type = list(object({
     actions    = list(string)
